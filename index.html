@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Vebbo is a free live streaming platform, bringing people together by providing short video streams." />
+  <meta name="keywords"
+    content="Vebbo, vebbo, vebbo.me, Video chat, Chat, Live, Live stream" />
+  <meta name="author" content="Vebbo inc." />
+  <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  <link rel="stylesheet" type="text/css" href="./css/modal.css" />
+  <link rel="stylesheet" type="text/css" href="./css/media.css" />
+  <link rel="icon" type="image/png" href="./assets/icon.png" />
+  <title>Vebbo | Live stream</title>
+</head>
+<body>
+  <div class="navbar">
+    <div class="container flex">
+      <h1><a href="index.html">Vebbo</a></h1>
+      <nav>
+        <ul>
+          <li><a href="policy.html" class="link">Policy</a></li>
+          <li><a href="#contact" class="link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <section class="stream">
+      <div class="left">
+          <div class="layer">
+            <div class="views">
+              <canvas id="live"></canvas>
+              <video id="cam" autoplay muted></video>
+              <img src="./assets/icons/signal.gif" class="no_stream" id="no_stream"/>
+              <img src="./assets/icon.png" alt="icon" class="icon"/>
+              <a href="#popup_flag" class="stream_flag_btn"><img src="./assets/icons/flag.png" alt="flag" class="flag_btn" id="flagBtn" /></a>
+              <img src="./assets/icons/mic.png" alt="mute" class="mute_btn" id="muteBtn" />
+              <a href="#popup_profile" class="stream_img_btn" id="streamer"><img src="./assets/icons/circle.png" alt="view" class="view_btn" id="viewBtn" /></a>
+              <label for="counter" class="timer" id="timer"></label>
+              <label for="stream_tag" class="tag" id="tag">#</label>
+              <div class="prompt_container" id="prompt_container">
+                <label id="prompt_count"></label>
+                <img src="./assets/icons/str.png"/>
+              </div>
+              <div class="clap_container">
+                <label id="claps_count"></label>
+                <img src="./assets/icons/clap.png" id="claps_btn"/>
+              </div>
+            </div>
+          </div>
+          <div class="left_bottom">
+            <div class="profile_container">
+              <h2 class="online">Online</h2>
+              <h2 id="onlineCount">0</h2>
+              <a href="#edit_account" class="profile_btn"><img src="./assets/icons/circle.png" id="profile_img_btn"></a>            
+            </div>
+            <div class="mid_container">
+              <div class="timer_container" id="timer_container">
+                  <div class="timer_selection">
+                    <div>
+                      <label>5 min</label>
+                    </div>
+                  </div>
+                  <div class="timer_selection">
+                    <div class="time_locked"><label>10 min</label>
+                      <img src="./assets/icons/lock.png"></div>
+                  </div>
+                  <div class="timer_selection">
+                    <div class="time_locked"><label>20 min</label>
+                      <img src="./assets/icons/lock.png"></div>
+                  </div>
+                  <div class="timer_selection">
+                    <div class="time_locked"><label>30 min</label>
+                      <img src="./assets/icons/lock.png"></div>
+                  </div>
+              </div>
+            <input type="text" id="tagField" maxlength="16" autocomplete="off" placeholder="#Tag Eg: Sport">
+            <a><button id="goLive">Go Live</button></a>
+            </div>
+          </div> 
+      </div>
+      <div class="right">
+        <div class="note_container card">
+          <a href="#popup_profile"><marquee behavior="scroll" scrolldelay="120" direction="left" id="ad" class="ad"></marquee></a>
+          <div class="add_note_btn_container">
+            <img src="./assets/icons/add.png" id="add_note_btn"/>
+          </div>
+        </div>
+        <div class="chat_container card">
+          <ul id="chatList">
+          </ul> 
+        </div>
+        <div class="chat_input card">
+          <input type="text" id="chatField" class="chat_field" autocomplete="off" placeholder="Write...">
+          <button class="sendBtn" id="sendBtn">Send</button>
+        </div>
+      </div>
+  </section>
+
+  <div id="popup_main" class="overlay">
+    <div class="popup">
+      <h2>Under Maintenance</h2>
+      <a class="close" href="#">&times;</a>
+      <div class="details">
+        <p>Ooops, Streaming from the web will be activated shortly</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup_note" class="overlay">
+    <div class="popup">
+      <h2>Drop a Note</h2>
+      <a class="close" href="#">&times;</a>
+      <div class="details">
+        <div class="amt_count_container">
+          <h3 id="noteCount" class="note_count">0/127</h3>
+        </div>
+        <textarea type="text" id="noteField"  class="inputs" rows="3" maxlength="127" placeholder="Note..."></textarea>
+        <button id="dropBtn" class="popup_buttons">Drop</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup_msg" class="overlay">
+    <div class="popup">
+      <h2>Alert</h2>
+      <a class="close" href="#">&times;</a>
+      <div class="details">
+        <p id="pop_msg"></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup_flag" class="overlay">
+    <div class="popup">
+      <h2>Flag as inappropriate</h2>
+      <a class="close" href="#">&times;</a>
+      <div class="details">
+        <a href="#"><button class="popup_buttons" id="report_btn">Report</button></a>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup_opt" class="overlay">
+    <div class="popup">
+      <h2>Unlock for <span id="opt_val"></span></h2>
+      <a class="close" href="#">&times;</a>
+      <div class="details">
+        <img src="./assets/visamasterverve.png"  class="pay_img"/>
+        <input type="email" id="email_field" class="inputs" autocomplete="off" placeholder="Email">
+        <button class="popup_buttons" id="continue_btn">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="edit_account" class="overlay">
+    <div class="popup">
+      <h2>Edit Profile</h2>
+      <a class="close" href="#">&times;</a>
+      <div class="details">
+        <div class="top">
+          <div class="top_container" id="top_container">
+            <img src="./assets/icons/mood_1.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_2.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_3.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_4.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_5.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_6.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_7.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_8.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_9.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_10.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_11.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_12.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_13.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_14.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_15.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_16.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_17.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_18.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_19.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_20.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_21.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_22.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_23.png" class="edit_profile_img">
+            <img src="./assets/icons/mood_24.png" class="edit_profile_img">
+          </div>
+        </div>
+        <div class="inputs_container">
+          <input type="text" id="username_field"  class="inputs" maxlength="16" placeholder="Username">
+          <input type="text" id="location_field" class="inputs" placeholder="Location">
+          <input type="text" id="face_field" class="inputs" placeholder="Facebook">
+          <input type="text" id="insta_field" class="inputs" placeholder="Instagram">
+          <input type="text" id="twit_field" class="inputs" placeholder="Twitter">
+          <input type="text" id="web_field" class="inputs" placeholder="Website">
+          <h3 id="bio_count" class="bio_count">0/32</h3>
+          <textarea type="text" id="bio_field" class="inputs" rows="3" placeholder="Bio" maxlength="32"></textarea>
+          <a href="#"><button id="saveBtn" class="popup_buttons">Save</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup_profile" class="overlay">
+    <div class="popup">
+        <img src="./assets/icons/circle.png" id="profile_img">
+      <a class="close" href="#">&times;</a>
+      <div class="details">
+        <h2 id="profile_name"></h2>
+        <h3 class="profile_location" id="profile_location"></h2>
+        <h3 class="profile_bio" id="profile_bio"></h3>
+        <hr>
+        <ul>
+          <li><a target="_blank" id="profile_face">
+            <img src="./assets/facebook.png" /></a></li>
+          <li><a target="_blank" id="profile_insta">
+            <img src="./assets/instagram.png" /></a></li>
+          <li><a target="_blank" id="profile_twit">
+            <img src="./assets/twitter.png" /></a></li>
+          <li><a target="_blank" id="profile_web">
+            <img src="./assets/web.png"></a></li>
+        </ul> 
+      </div>
+    </div>
+  </div>
+
+  <section id="home" class="home">
+    <div class="container">
+      <p>Vebbo is a free live streaming platform, bringing people together by providing short video streams together
+        with an amazing poll and call in feature. <br><br>
+        Currently available for Web and Android, iOS coming soon. Open on Desktop/Laptop to use the web version
+      </p>
+
+      <div class="home_btns flex">
+        <img src="./assets/play_btn.png" alt="Google Play Download" class="img_btn" id="play_btn" />
+        <img src="./assets/ios_btn.png" alt="Apple App Store Download" class="img_btn" id="ios_btn" />
+      </div>
+      <div class="direct_div">
+        <a href="./assets/Vebbo.apk" download="Vebbo" class="direct_btn">Direct Download for Android</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="showcase" class="showcase container">
+    <h1>Showcase</h1>
+    <div class="grid items">
+      <img src="./assets/web_screen.png">
+      <img src="./assets/1.png">
+      <img src="./assets/2.png">
+      <img src="./assets/3.png">
+      <img src="./assets/4.png">
+    </div>
+  </section>
+
+  <footer class="footer" id="contact">
+    <div class="footer_mobile">
+      <div class="footer_btns">
+        <img src="./assets/play_btn.png" alt="Google Play Download" class="img_btn" id="play_btn2" />
+        <img src="./assets/ios_btn.png" alt="Apple App Store Download" class="img_btn" id="ios_btn2" />
+      </div>
+      <div class="direct_div">
+        <a href="./assets/Vebbo.apk" download="Vebbo" class="direct_btn">Direct Download for Android</a>
+      </div>
+    </div>
+
+    <h2>Connect</h2>
+    <h3>Reach Us: <span id="mail_btn">stackdriveinc@gmail.com</span></h3>
+    <ul>
+      <li><a href="https://www.instagram.com/onisofien.dev" target="_blank">
+          <img src="./assets/instagram.png" /></a></li>
+      <li><a href="https://twitter.com/OnisofienGeek" target="_blank">
+          <img src="./assets/twitter.png" /></a></li>
+      <li><a href="mailto:stackdriveinc@gmail.com" target="_blank">
+          <img src="./assets/gmail.png" class="mail_img_btn"></a></li>
+    </ul>
+    <a href="policy.html"><h3 class="terms">Terms &amp; Policy </h3></a>
+    <h3 class="copyright">Vebbo inc &#169; 2020 copyright all rights reserved
+    </h3>
+  </footer> 
+  
+  <script src="./js/stream.js"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script src="./js/utils.js"></script>
+  <script src="./js/wave.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>

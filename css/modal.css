@@ -1,0 +1,223 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 100px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 40%;
+  max-height: 80vh;
+  position: relative;
+  transition: all 1s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: var(--dark-grey);
+  font-family: "Ubuntu", sans-serif, Helvetica;
+}
+
+.popup img:hover {
+  cursor: pointer;
+  transform: scale(1.06);
+  opacity: 0.9;
+  transition: transform 0.2s ease-in;
+}
+
+.popup .close {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.popup .close:hover {
+  color: var(--secondary-color);
+}
+
+.popup .details {
+  min-height: 30%;
+}
+
+.popup .pay_img {
+  width: 30%;
+  height: auto;
+  margin: 20px 0;
+}
+
+.popup .details p {
+  font-size: 1.3rem;
+}
+
+.popup_buttons {
+  width: 100%;
+  display: inline-block;
+  background: var(--secondary-light);
+  color: white;
+  padding: 1rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.2rem;
+  border-radius: 16px;
+  box-sizing: border-box;
+  margin: 25px 0 10px 0;
+}
+
+.popup_buttons:hover {
+  background: var(--secondary-hover);
+}
+
+.popup_profile .popup {
+  width: 50%;
+}
+
+.popup_profile .popup h2 {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.popup_profile .note-location {
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.popup_profile .note-content {
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.profile-img img {
+  width: 160px;
+  height: 160px;
+  border-radius: 5%;
+}
+
+.popup_profile ul {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}
+
+.popup_profile li img {
+  width: 60px;
+}
+
+.popup_profile img {
+  padding-right: 15px;
+}
+
+#popup_profile #profile_img {
+  width: 25%;
+  height: auto;
+}
+
+#popup_profile .details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#popup_profile h2 {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+#popup_profile hr {
+  margin-top: 40px;
+}
+
+#popup_profile ul {
+  width: 50%;
+  margin-top: 10px;
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+}
+
+#popup_profile li img {
+  width: 50px;
+  height: auto;
+}
+
+#edit_account .popup {
+  overflow-y: scroll;
+}
+
+#edit_account .top {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+#edit_account .top_container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 10px;
+}
+
+#edit_account .edit_profile_img {
+  width: 20%;
+  height: auto;
+  margin-left: 8px;
+}
+
+#edit_account .inputs_container {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs {
+  border: 1px solid var(--dark-grey);
+  border-radius: 4px;
+  color: black;
+  width: 100%;
+  height: auto;
+  font-size: var(--mb-3);
+  font-weight: 600;
+  font-family: "Ubuntu", sans-serif, Helvetica;
+  padding: 8px;
+  margin-top: 4px;
+}
+
+.inputs:focus,
+#edit_account .saveBtn:focus {
+  outline: none;
+}
+
+#edit_account .bio_count {
+  margin: 10px 0;
+  font-size: 1.3em;
+  align-self: flex-end;
+}
