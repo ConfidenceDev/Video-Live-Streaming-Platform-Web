@@ -8,7 +8,7 @@ Android: <a href="https://github.com/Dev-Geek/Video-Live-Streaming-Platform-Andr
 
 # ScreenShots
 <p float="left">
-<img src="https://github.com/Dev-Geek/Video-Live-Streaming-Platform-Web/blob/main/assets/web.png" width="256">
+<img src="https://github.com/Dev-Geek/Video-Live-Streaming-Platform-Web/blob/main/assets/web_screen.png" width="1024">
 </p>
 
 # How to Use
